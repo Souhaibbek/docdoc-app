@@ -19,7 +19,7 @@ class DocLogoBanner extends StatelessWidget {
         SizedBox(width: 10.w),
         Text(
           'Docdoc',
-          style: Styles.font24Black700Weight,
+          style: Styles.font24BlackBold,
         ),
 
       ],
