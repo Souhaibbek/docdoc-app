@@ -12,6 +12,9 @@ class AppTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? backgroundColor;
   final bool? isObscureText;
+  final TextEditingController? controller;
+  final Function(String?) validator;
+
   const AppTextFormField({
     super.key,
     required this.hintText,
@@ -23,34 +26,52 @@ class AppTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.isObscureText,
+    this.controller,
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      validator: (value) {
+        return validator(value);
+      },
       decoration: InputDecoration(
-        hintStyle: hintStyle??Styles.font14LightGreyMedium,
+        hintStyle: hintStyle ?? Styles.font14LightGreyMedium,
         hintText: hintText,
         suffixIcon: suffixIcon,
         isDense: true,
         filled: true,
-        fillColor: backgroundColor?? ColorsManager.moreLightGreyColor,
+        fillColor: backgroundColor ?? ColorsManager.moreLightGreyColor,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 18.0),
-        focusedBorder: focusedBorder?? OutlineInputBorder(
+        focusedBorder:
+            focusedBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: ColorsManager.mainBlue, width: 1.3),
+            ),
+        enabledBorder:
+            enabledBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(
+                color: ColorsManager.lightGreyColor,
+                width: 1.3,
+              ),
+            ),
+        errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
-          borderSide: BorderSide(color: ColorsManager.mainBlue, width: 1.3),
+          borderSide: BorderSide(color: Colors.red, width: 1.3),
         ),
-        enabledBorder: enabledBorder?? OutlineInputBorder(
+        focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
-          borderSide: BorderSide(
-            color: ColorsManager.lightGreyColor,
-            width: 1.3,
-          ),
+          borderSide: BorderSide(color: Colors.red, width: 1.3),
         ),
       ),
 
-      obscureText: isObscureText?? false,
-      style:  contentStyle?? Styles.font14DarkBlueMedium,
+      obscureText: isObscureText ?? false,
+      style: contentStyle ?? Styles.font14DarkBlueMedium,
     );
   }
 }
