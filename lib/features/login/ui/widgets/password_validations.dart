@@ -23,13 +23,13 @@ class PasswordValidations extends StatelessWidget {
     return Column(
       children: [
         buildValidationRow(isValid: hasLowercase, text: 'Contains lowercase letter'),
-        verticalSpacing(2),
+        verticalSpace(2),
         buildValidationRow(isValid: hasUppercase, text: 'Contains uppercase letter'),
-        verticalSpacing(2),
+        verticalSpace(2),
         buildValidationRow(isValid: hasNumber, text: 'Contains number'),
-        verticalSpacing(2),
+        verticalSpace(2),
         buildValidationRow(isValid: hasSpecialCharacter, text: 'Contains special character'),
-        verticalSpacing(2),
+        verticalSpace(2),
         buildValidationRow(
           isValid: hasMinLength,
           text: 'Contains at least 8 characters',
@@ -42,7 +42,7 @@ class PasswordValidations extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(radius: 2.5, backgroundColor: ColorsManager.greyColor),
-        horizontalSpacing(6),
+        horizontalSpace(6),
         Text(
           text,
           style: Styles.font11DarkBlueRegular.copyWith(

@@ -1,4 +1,3 @@
-import 'package:comeback/core/networking/api_result.dart';
 import 'package:comeback/features/login/data/models/login_request_body.dart';
 import 'package:comeback/features/login/data/repos/login_repo.dart';
 import 'package:comeback/features/login/logic/cubit/login_state.dart';
@@ -12,9 +11,14 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  emitLoginStates(LoginRequestBody loginRequestBody, ) async {
+  emitLoginStates() async {
     emit(LoginState.loading());
-    final response = await _loginRepo.login(loginRequestBody);
+    final response = await _loginRepo.login(
+      LoginRequestBody(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
     response.when(
       success: (data) {
         emit(LoginState.success(data));
