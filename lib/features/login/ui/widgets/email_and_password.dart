@@ -15,11 +15,6 @@ class EmailAndPassword extends StatefulWidget {
 }
 
 class _EmailAndPasswordState extends State<EmailAndPassword> {
-  bool hasUppercase = false;
-  bool hasLowercase = false;
-  bool hasNumber = false;
-  bool hasSpecialCharacter = false;
-  bool hasMinLength = false;
   bool isObscureText = true;
   late final TextEditingController passwordController;
 
@@ -27,20 +22,6 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   void initState() {
     super.initState();
     passwordController = context.read<LoginCubit>().passwordController;
-    setupPasswordValidationListeners();
-  }
-
-  void setupPasswordValidationListeners() {
-    passwordController.addListener(() {
-      final password = passwordController.text;
-      setState(() {
-        hasUppercase = AppRegex.hasUpperCase(password);
-        hasLowercase = AppRegex.hasLowerCase(password);
-        hasNumber = AppRegex.hasNumber(password);
-        hasSpecialCharacter = AppRegex.hasSpecialCharacter(password);
-        hasMinLength = AppRegex.hasMinLength(password);
-      });
-    });
   }
 
   @override
@@ -60,10 +41,10 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             },
             controller: context.read<LoginCubit>().emailController,
           ),
-          verticalSpacing(16),
+          verticalSpace(16),
           AppTextFormField(
             hintText: 'Password',
-            controller: context.read<LoginCubit>().passwordController,
+            controller: passwordController,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Password is required';
@@ -82,14 +63,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               ),
             ),
           ),
-          verticalSpacing(24),
-          PasswordValidations(
-            hasUppercase: hasUppercase,
-            hasLowercase: hasLowercase,
-            hasNumber: hasNumber,
-            hasSpecialCharacter: hasSpecialCharacter,
-            hasMinLength: hasMinLength,
-          ),
+         
         ],
       ),
     );

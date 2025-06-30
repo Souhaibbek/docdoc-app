@@ -1,9 +1,8 @@
 import 'package:comeback/core/helpers/spacing.dart';
 import 'package:comeback/core/theming/styles.dart';
 import 'package:comeback/core/widgets/app_text_button.dart';
-import 'package:comeback/features/login/data/models/login_request_body.dart';
 import 'package:comeback/features/login/logic/cubit/login_cubit.dart';
-import 'package:comeback/features/login/ui/widgets/already_sign_up.dart';
+import 'package:comeback/features/login/ui/widgets/dont_have_an_account.dart';
 import 'package:comeback/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:comeback/features/login/ui/widgets/terms_and_condition.dart';
 import 'package:flutter/material.dart';
@@ -25,16 +24,16 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Welcome Back', style: Styles.font24BlueBold),
-                verticalSpacing(8),
+                verticalSpace(8),
                 Text(
                   'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
                   style: Styles.font14GreyRegular,
                 ),
-                verticalSpacing(36),
+                verticalSpace(36),
                 Column(
                   children: [
                     EmailAndPassword(),
-                    verticalSpacing(24),
+                    verticalSpace(16),
                     Align(
                       alignment: AlignmentDirectional.centerEnd,
                       child: Text(
@@ -42,17 +41,17 @@ class LoginScreen extends StatelessWidget {
                         style: Styles.font14BlueRegular,
                       ),
                     ),
-                    verticalSpacing(40),
+                    verticalSpace(16),
                     AppTextButton(
                       title: 'Login',
                       onPressed: () {
                         validateThenLogin(context);
                       },
                     ),
-                    verticalSpacing(24),
+                    verticalSpace(24),
                     TermsAndCondition(),
-                    verticalSpacing(60),
-                    AlreadySignUp(),
+                    verticalSpace(60),
+                    DontHaveAnAccount(),
                     LoginBlocListener(),
                   ],
                 ),
@@ -68,12 +67,7 @@ class LoginScreen extends StatelessWidget {
   void validateThenLogin(BuildContext context) {
     final loginCubit = context.read<LoginCubit>();
     if (loginCubit.formKey.currentState!.validate()) {
-      loginCubit.emitLoginStates(
-        LoginRequestBody(
-          email: loginCubit.emailController.text,
-          password: loginCubit.passwordController.text,
-        ),
-      );
+    loginCubit.emitLoginStates();
     }
   }
 }
