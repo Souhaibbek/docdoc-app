@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  distribute_to_firebase:
+  distribute:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout my repo code
