@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "804034502617",
+    "project_id": "docdoc-1e36a",
+    "storage_bucket": "docdoc-1e36a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804034502617:android:da5303cbcc6c24d2cd83c8",
+        "android_client_info": {
+          "package_name": "com.sbk.comeback"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA8sg-BCHWsz76gSWDdWhnO6ZZeXfxF6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
