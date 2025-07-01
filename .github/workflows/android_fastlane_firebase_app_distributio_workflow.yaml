@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  firebase_distribution:
+  distribution:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout my repo code
@@ -35,5 +35,5 @@ jobs:
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
       run: |
         bundle exec fastlane android firebase_distribution
-      working-directory: android
+      #working-directory: android
 
