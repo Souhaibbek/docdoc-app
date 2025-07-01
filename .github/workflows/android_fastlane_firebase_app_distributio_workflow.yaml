@@ -22,7 +22,8 @@ jobs:
       uses: subosito/flutter-action@v2
       with:
         channel: stable
-
+    - name: Check Gemfile.lock
+      run: cat Gemfile.lock      
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
