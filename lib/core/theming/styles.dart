@@ -80,4 +80,45 @@ class Styles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.darkBlue,
      );
+      static TextStyle font18DarkBlueBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManager.darkBlue,
+     );
+     static TextStyle font11UltraGreyRegular = TextStyle(
+    fontSize: 11.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.ultraGreyColor,
+  );
+  static TextStyle font18WhiteMedium = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: Colors.white,
+  );
+    static TextStyle font12BlueRegular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.mainBlue,
+  );
+  static TextStyle font12DarkBlueRegular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.darkBlue,
+  );
+    static TextStyle font14DarkBlueSemiBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.darkBlue,
+  );
+  static TextStyle font16DarkBlueBold =TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManager.darkBlue,
+  );
+   static TextStyle font12GreyMedium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.greyColor,
+  );
+ 
 }
