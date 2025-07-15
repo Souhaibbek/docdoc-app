@@ -1,13 +1,15 @@
 
 import 'package:comeback/core/theming/colors.dart';
 import 'package:comeback/core/theming/styles.dart';
+import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorSpecialityItem extends StatelessWidget {
   final int itemIndex;
+  final SpecialityData? specialityData;
   const DoctorSpecialityItem({
-    super.key, required this.itemIndex,
+    super.key, required this.itemIndex, required this.specialityData,
   });
 
   @override
@@ -27,7 +29,7 @@ class DoctorSpecialityItem extends StatelessWidget {
           ),
         Spacer(),
           Text(
-            'Speciality ${itemIndex + 1}',
+            specialityData?.name ?? 'Random name',
             style: Styles.font12DarkBlueRegular,
           ),
         ],

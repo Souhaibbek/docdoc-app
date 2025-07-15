@@ -1,10 +1,7 @@
 import 'package:comeback/core/helpers/spacing.dart';
-import 'package:comeback/features/home/ui/widgets/doctor_specialty/doctor_speciality_list.dart';
-import 'package:comeback/features/home/ui/widgets/doctor_specialty/doctor_speciality_title.dart';
 import 'package:comeback/features/home/ui/widgets/home_blue_banner.dart';
 import 'package:comeback/features/home/ui/widgets/home_top_bar.dart';
-import 'package:comeback/features/home/ui/widgets/recommendation_doctor/recommendation_doctor_list.dart';
-import 'package:comeback/features/home/ui/widgets/recommendation_doctor/recommendation_doctor_title.dart';
+import 'package:comeback/features/home/ui/widgets/speciality_and_doctors_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,17 +20,11 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HomeTopBar(),
+                const HomeTopBar(),
                 verticalSpace(24),
-                HomeBlueBanner(),
+                const HomeBlueBanner(),
                 verticalSpace(24),
-                DoctorSpecialityTitle(),
-                verticalSpace(16),
-                DoctorSpecialityList(),
-                verticalSpace(24),
-                RecommendationDoctorTitle(),
-                verticalSpace(16),
-                RecommendationDoctorList(),
+                SpecialityAndDoctorsBlocBuilder(),
               ],
             ),
           ),
