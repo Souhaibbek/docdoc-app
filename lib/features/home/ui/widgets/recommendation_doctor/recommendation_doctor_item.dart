@@ -1,30 +1,47 @@
+
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:comeback/core/helpers/spacing.dart';
 import 'package:comeback/core/theming/styles.dart';
+import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecommendationDoctorItem extends StatelessWidget {
-  final int itemIndex;
-  const RecommendationDoctorItem({super.key, required this.itemIndex});
+  final Doctors? doctorsModel;
+   const RecommendationDoctorItem({super.key, this.doctorsModel});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsDirectional.only(bottom: 24.w),
+    return Container(
+      margin: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12.r),
-            child: Container(
-              decoration: BoxDecoration(
-                color:Colors.amber
-               
-              ),
-              child: Image.asset(
+          CachedNetworkImage(
+            imageUrl:
+               'https://media.istockphoto.com/id/1214900103/photo/caucasian-mature-man-in-white-coat-doctor-or-intern-throws-up-his-hands.jpg?s=612x612&w=0&k=20&c=IGOW2eMX78pSAs2ng9N71z-tiLm00kSAv_as7ZQ9xbs=',
+            progressIndicatorBuilder: (context, url, downloadProgress) {
+              return Container(
+                  width: 110.w,
+                  height: 120.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.white,
+                  ),
+                );
+            },
+            imageBuilder: (context, imageProvider) => Container(
+              width: 110.w,
               height: 120.h,
-              width:110.w,
-              'assets/imgs/doctor.png',
-            ),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(12.0),
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           horizontalSpace(16),
@@ -33,30 +50,19 @@ class RecommendationDoctorItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Doctor Randy ${itemIndex + 1}',
-                  style: Styles.font16DarkBlueBold,
+                  doctorsModel?.name ?? 'Name',
+                  style: Styles.font18DarkBlueBold,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                verticalSpace(8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Specialty ${itemIndex + 1}',
-                      style: Styles.font12GreyMedium,
-                    ),
-                    Text('  |  ', style: Styles.font12GreyMedium),
-                    Text('RSUD Gatot Subroto', style: Styles.font12GreyMedium),
-                  ],
+                verticalSpace(5),
+                Text(
+                  '${doctorsModel?.degree} | ${doctorsModel?.phone}',
+                  style: Styles.font12GreyMedium,
                 ),
-                verticalSpace(8),
-                Row(
-                  children: [
-                    Icon(Icons.star, color: Colors.amber, size: 16.w),
-                    horizontalSpace(4.w),
-                    Text('4.8', style: Styles.font12GreyMedium),
-                    horizontalSpace(8.w),
-                    Text('(120 reviews)', style: Styles.font12GreyMedium),
-                  ],
+                verticalSpace(5),
+                Text(
+                  doctorsModel?.email ?? 'Email',
+                  style: Styles.font12GreyMedium,
                 ),
               ],
             ),

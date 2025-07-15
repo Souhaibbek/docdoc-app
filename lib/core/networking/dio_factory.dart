@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-
 class DioFactory {
   /// private constructor as I don't want to allow creating an instance of this class
   DioFactory._();
@@ -16,6 +15,7 @@ class DioFactory {
       dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
+      addDioHeaders();
       addDioInterceptor();
       return dio!;
     } else {
@@ -23,7 +23,9 @@ class DioFactory {
     }
   }
 
-
+  static void addDioHeaders() async {
+    dio?.options.headers = {'Accept': 'application/json','Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzUyNTgyODMwLCJleHAiOjE3NTI2NjkyMzAsIm5iZiI6MTc1MjU4MjgzMCwianRpIjoiMU5EQWhiUWU5NEV6eWM5VyIsInN1YiI6IjQxMjQiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.2s03kwJk_kARPUaFdTe6Au3yVbDLygQBYb6Mr44nGYw'};
+  }
 
   static void addDioInterceptor() {
     dio?.interceptors.add(
