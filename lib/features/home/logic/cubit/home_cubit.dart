@@ -1,4 +1,3 @@
-import 'package:comeback/core/networking/api_error_handler.dart';
 import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:comeback/features/home/data/repos/home_repo.dart';
 import 'package:comeback/features/home/logic/cubit/home_state.dart';

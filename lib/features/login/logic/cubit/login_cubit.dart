@@ -1,3 +1,6 @@
+import 'package:comeback/core/helpers/constants.dart';
+import 'package:comeback/core/helpers/shared_pref_helper.dart';
+import 'package:comeback/core/networking/dio_factory.dart';
 import 'package:comeback/features/login/data/models/login_request_body.dart';
 import 'package:comeback/features/login/data/repos/login_repo.dart';
 import 'package:comeback/features/login/logic/cubit/login_state.dart';
@@ -20,8 +23,10 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
     response.when(
-      success: (data) {
-        emit(LoginState.success(data));
+      success: (loginResponse) {
+        // Save the auth token to shared preferences
+        saveAuthToken(loginResponse.userData!.token ?? '');
+        emit(LoginState.success(loginResponse));
       },
       failure: (errorHandler) {
         emit(
@@ -31,5 +36,13 @@ class LoginCubit extends Cubit<LoginState> {
         );
       },
     );
+  }
+
+  Future<void> saveAuthToken(String token) async {
+    // Save the auth token to shared preferences
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.authToken, token);
+    debugPrint('Auth token saved');
+    // Update the Dio headers with the new token
+    DioFactory.setTokenAfterLogin(token);
   }
 }

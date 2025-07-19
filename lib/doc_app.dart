@@ -1,3 +1,4 @@
+import 'package:comeback/core/helpers/constants.dart';
 import 'package:comeback/core/routing/app_router.dart';
 import 'package:comeback/core/routing/routes.dart';
 import 'package:comeback/core/theming/colors.dart';
@@ -20,7 +21,7 @@ class DocApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.onBoarding,
+        initialRoute: isLoggedInUser ? Routes.home : Routes.onBoarding,
         debugShowCheckedModeBanner: false,
       ),
     );
