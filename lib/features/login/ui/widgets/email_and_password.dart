@@ -3,7 +3,6 @@ import 'package:comeback/core/helpers/spacing.dart';
 import 'package:comeback/core/theming/colors.dart';
 import 'package:comeback/core/widgets/app_text_form_field.dart';
 import 'package:comeback/features/login/logic/cubit/login_cubit.dart';
-import 'package:comeback/features/login/ui/widgets/password_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
