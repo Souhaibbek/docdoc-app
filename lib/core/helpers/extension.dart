@@ -30,3 +30,7 @@ extension Navigation on BuildContext {
 extension StringExtension on String? {
   bool get isNullOrEmpty => this == null || this == "";
 }
+
+extension ListExtension<T> on List<T>? {
+  bool get isNullOrEmpty => this == null ||  this == [];
+}

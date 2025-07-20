@@ -1,8 +1,8 @@
 import 'package:comeback/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 
-class DoctorSpecialityTitle extends StatelessWidget {
-  const DoctorSpecialityTitle({super.key});
+class SpecialityTitle extends StatelessWidget {
+  const SpecialityTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
