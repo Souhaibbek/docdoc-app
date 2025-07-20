@@ -1,6 +1,7 @@
 import 'package:comeback/core/helpers/constants.dart';
 import 'package:comeback/core/helpers/shared_pref_helper.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -34,7 +35,8 @@ class DioFactory {
   }
 
   static void setTokenAfterLogin(String token) {
-    dio?.options.headers = {'Authorization': 'Bearer $token'};
+    dio?.options.headers['Authorization'] = 'Bearer $token';
+    debugPrint('header token "UPDATED" ');
   }
 
   static void addDioInterceptor() {
