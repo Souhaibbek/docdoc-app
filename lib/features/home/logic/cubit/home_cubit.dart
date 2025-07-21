@@ -1,5 +1,4 @@
 import 'package:comeback/core/helpers/extension.dart';
-import 'package:comeback/core/networking/api_error_handler.dart';
 import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:comeback/features/home/data/repos/home_repo.dart';
 import 'package:comeback/features/home/logic/cubit/home_state.dart';
@@ -20,8 +19,8 @@ class HomeCubit extends Cubit<HomeState> {
         getDoctorList(specialityId: specialityDataList?.first?.id);
         emit(HomeState.specialitySuccess(specialityDataList));
       },
-      failure: (errorHandler) {
-        emit(HomeState.specialityFailure(errorHandler));
+      failure: (apiErrorModel) {
+        emit(HomeState.specialityFailure(apiErrorModel));
       },
     );
   }
@@ -31,7 +30,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (doctorsList.isNullOrEmpty) {
       emit(
         HomeState.doctorsFailure(
-          ErrorHandler.handle('No doctors found for this speciality'),
+         
         ),
       );
     } else {
