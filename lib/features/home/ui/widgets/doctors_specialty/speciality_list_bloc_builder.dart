@@ -1,5 +1,5 @@
 import 'package:comeback/core/helpers/spacing.dart';
-import 'package:comeback/core/networking/api_error_handler.dart';
+import 'package:comeback/core/networking/api_error_model.dart';
 import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:comeback/features/home/logic/cubit/home_cubit.dart';
 import 'package:comeback/features/home/logic/cubit/home_state.dart';
@@ -28,7 +28,7 @@ class SpecialityListBlocBuilder extends StatelessWidget {
           specialityLoading: () => setupLoading(),
           specialitySuccess:
               (specialityDataList) => setupSuccess(specialityDataList),
-          specialityFailure: (errorHandler) => setupFailure(errorHandler),
+          specialityFailure: (apiErrorModel) => setupFailure(apiErrorModel),
         );
       },
     );
@@ -46,9 +46,9 @@ Widget setupLoading() => Column(
   ],
 );
 // Failure
-Widget setupFailure(ErrorHandler errorHandler) => Center(
+Widget setupFailure(ApiErrorModel apiErrorModel) => Center(
   child: Text(
-    errorHandler.apiErrorModel.message ?? 'An error occurred',
+    apiErrorModel.getAllErrorsMessage(),
     style: TextStyle(color: Colors.red),
   ),
 );

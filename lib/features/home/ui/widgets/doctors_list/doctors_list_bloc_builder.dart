@@ -1,4 +1,4 @@
-import 'package:comeback/core/networking/api_error_handler.dart';
+import 'package:comeback/core/networking/api_error_model.dart';
 import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:comeback/features/home/logic/cubit/home_cubit.dart';
 import 'package:comeback/features/home/logic/cubit/home_state.dart';
@@ -19,29 +19,30 @@ class DoctorsListBlocBuilder extends StatelessWidget {
         return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
           doctorsSuccess: (doctorsList) => setupSuccess(doctorsList),
-          doctorsFailure: (errorHandler) => Center(
-            child: Text(
-              errorHandler.apiErrorModel.message ?? 'An error occurred',
-              style: TextStyle(color: Colors.red),
-            ),
-          ),
+          doctorsFailure:
+              () => Center(
+                child: Text(
+                  'An error occurred',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
         );
       },
     );
   }
 }
+
 //setup failure
-Widget setupFailure(ErrorHandler errorHandler) {
+Widget setupFailure(ApiErrorModel apiErrorModel) {
   return Center(
     child: Text(
-      errorHandler.apiErrorModel.message ?? 'An error occurred',
+      apiErrorModel.message ?? 'An error occurred',
       style: TextStyle(color: Colors.red),
     ),
   );
 }
+
 //setupSuccess
 setupSuccess(List<Doctors?>? doctorsList) {
- 
   return DoctorsList(doctorsList: doctorsList);
 }
-
