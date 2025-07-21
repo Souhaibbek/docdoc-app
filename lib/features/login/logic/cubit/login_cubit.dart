@@ -9,13 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
-  LoginCubit(this._loginRepo) : super(const LoginState.initial());
+  LoginCubit(this._loginRepo) : super(const LoginState.loginInitial());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   emitLoginStates() async {
-    emit(LoginState.loading());
+    emit(LoginState.loginLoading());
     final response = await _loginRepo.login(
       LoginRequestBody(
         email: emailController.text,
@@ -26,12 +26,12 @@ class LoginCubit extends Cubit<LoginState> {
       success: (loginResponse) {
         // Save the auth token to shared preferences
         saveAuthToken(loginResponse.userData!.token ?? '');
-        emit(LoginState.success(loginResponse));
+        emit(LoginState.loginSuccess(loginResponse));
       },
-      failure: (errorHandler) {
+      failure: (apiErrorModel) {
         emit(
-          LoginState.error(
-            message: errorHandler.apiErrorModel.message ?? 'an error occurred',
+          LoginState.loginError(
+            apiErrorModel,
           ),
         );
       },

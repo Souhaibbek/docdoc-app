@@ -1,4 +1,4 @@
-import 'package:comeback/core/networking/api_error_handler.dart';
+import 'package:comeback/core/networking/api_error_model.dart';
 import 'package:comeback/features/home/data/models/speciality_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'home_state.freezed.dart';
@@ -12,11 +12,11 @@ class HomeState with _$HomeState {
   const factory HomeState.specialitySuccess(
     List<SpecialityData?>? specialityDataList,
   ) = SpecialitySuccess;
-  const factory HomeState.specialityFailure(ErrorHandler errorHandler) =
+  const factory HomeState.specialityFailure(ApiErrorModel apiErrorModel) =
       SpecialityFailure;
   // Doctors states
   const factory HomeState.doctorsSuccess(List<Doctors?>? doctorsList) =
       DoctorsSuccess;
-  const factory HomeState.doctorsFailure(ErrorHandler errorHandler) =
+  const factory HomeState.doctorsFailure() =
       DoctorsFailure;
 }
