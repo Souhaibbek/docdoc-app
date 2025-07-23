@@ -23,9 +23,9 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
     response.when(
-      success: (loginResponse) {
+      success: (loginResponse) async{
         // Save the auth token to shared preferences
-        saveAuthToken(loginResponse.userData!.token ?? '');
+        await saveAuthToken(loginResponse.userData!.token ?? '');
         emit(LoginState.loginSuccess(loginResponse));
       },
       failure: (apiErrorModel) {
@@ -39,10 +39,11 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> saveAuthToken(String token) async {
+    // Update the Dio headers with the new token
+    DioFactory.setTokenAfterLogin(token);
     // Save the auth token to shared preferences
     await SharedPrefHelper.setSecuredString(SharedPrefKeys.authToken, token);
     debugPrint('Auth token saved');
-    // Update the Dio headers with the new token
-    DioFactory.setTokenAfterLogin(token);
+   
   }
 }

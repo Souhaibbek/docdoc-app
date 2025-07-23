@@ -98,7 +98,7 @@ class _SignupFormState extends State<SignupForm> {
                 });
               },
               child: Icon(
-                isPasswordObscureText ? Icons.visibility_off : Icons.visibility,
+                isPasswordObscureText ? Icons.visibility : Icons.visibility_off,
               ),
             ),
             validator: (value) {
